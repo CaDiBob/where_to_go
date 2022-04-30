@@ -4,11 +4,11 @@ from django.urls import path
 from django.urls import re_path
 from django.views.static import serve
 
-from where_to_go import views
+from places import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home),
+    path('', views.show_palaces, name='mainpage'),
 ]
 
 if settings.DEBUG:
