@@ -1,15 +1,15 @@
-import json
-import os
+from audioop import reverse
 
+from django.urls import reverse
 from django.http import JsonResponse
 from places.models import Places
+from places import views
 
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 
 
 def show_palaces(request):
-    detail = os.path.join('static', 'places')
     places = Places.objects.all()
     places_info = {
         'type': 'FeatureCollection',
@@ -25,9 +25,9 @@ def show_palaces(request):
                 'properties': {
                     'title': place.title,
                     'placeId': place.id,
-                    'detailsUrl': os.path.join(
-                        'static', 'places', 'moscow_legends.json'
-                    )
+                    'detailsUrl': reverse(
+                        views.show_place, kwargs={'place_id':place.id}
+                    ),
                 }
             }
         places_info['features'].append(feature)
