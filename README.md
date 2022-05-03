@@ -13,7 +13,7 @@ pip install -r requirements.txt
 ```bash
 python manage.py runserver
 ```
-Создать суперпользователя для панели администратора
+Создать суперпользователя для панели администратора:
 
 ```bash
 python manage.py createsuperuser

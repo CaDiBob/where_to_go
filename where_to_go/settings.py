@@ -13,9 +13,9 @@ SECRET_KEY = env('SECRET_KEY', '$boij&%5jh(w^f03u)=aj4)fm_mavbm_4d$ejb^@jl*+0fyv
 DEBUG = env.bool('DEBUG', False)
 
 if not DEBUG:
-    CSRF_COOKIE_SECURE = env.bool('CSRF_COOKIE_SECURE')
-    SESSION_COOKIE_SECURE = env.bool('SESSION_COOKIE_SECURE')
-    SECURE_SSL_REDIRECT = env.bool('SECURE_SSL_REDIRECT')
+    CSRF_COOKIE_SECURE = env.bool('CSRF_COOKIE_SECURE', True)
+    SESSION_COOKIE_SECURE = env.bool('SESSION_COOKIE_SECURE', True)
+    SECURE_SSL_REDIRECT = env.bool('SECURE_SSL_REDIRECT', True)
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', ['127.0.0.1', 'cadibob.pythonanywhere.com'])
 
