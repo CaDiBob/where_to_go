@@ -1,12 +1,11 @@
 from audioop import reverse
 
-from django.urls import reverse
 from django.http import JsonResponse
-from places.models import Places
-from places import views
+from django.shortcuts import get_object_or_404, render
+from django.urls import reverse
 
-from django.shortcuts import render
-from django.shortcuts import get_object_or_404
+from places import views
+from places.models import Places
 
 
 def show_palaces(request):
