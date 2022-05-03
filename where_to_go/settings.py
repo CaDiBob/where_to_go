@@ -8,17 +8,16 @@ env.read_env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = env('SECRET_KEY', '$boij&%5jh(w^f03u)=aj4)fm_mavbm_4d$ejb^@jl*+0fyvpr')
 
-CSRF_COOKIE_SECURE = env.bool('CSRF_COOKIE_SECURE')
+DEBUG = env.bool('DEBUG', True)
 
-SESSION_COOKIE_SECURE = env.bool('SESSION_COOKIE_SECURE')
+if not DEBUG:
+    CSRF_COOKIE_SECURE = env.bool('CSRF_COOKIE_SECURE')
+    SESSION_COOKIE_SECURE = env.bool('SESSION_COOKIE_SECURE')
+    SECURE_SSL_REDIRECT = env.bool('SECURE_SSL_REDIRECT')
 
-SECURE_SSL_REDIRECT = env.bool('SECURE_SSL_REDIRECT')
-
-DEBUG = env.bool('DEBUG')
-
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', [])
 
 
 INSTALLED_APPS = [
@@ -101,6 +100,8 @@ MEDIA_URL = os.getenv('MEDIA_URL', '/media/')
 MEDIA_ROOT = os.getenv('MEDIA_ROOT', os.path.join(BASE_DIR, 'media'))
 
 STATIC_URL = os.getenv('STATIC_URL', '/static/')
+
+STATIC_ROOT = os.getenv("STATIC_ROOT")
 
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"), )
 
