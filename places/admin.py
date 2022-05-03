@@ -1,8 +1,8 @@
 from django.contrib import admin
-from places.models import Places, Image
-
+from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 from django.utils.html import format_html
 
+from places.models import Places, Image
 
 
 @admin.register(Image)
@@ -12,15 +12,21 @@ class ImageAdmin(admin.ModelAdmin):
     ordering = ('object_id', )
 
 
-class ImageInline(admin.TabularInline):
+class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
     model = Image
-    fields = ('image', 'place_images', 'object_id')
+    list_display = ('image', 'object_id')
+    fields = ('object_id', 'image', 'place_images')
     readonly_fields = ('place_images',)
+    ordering = ('object_id', )
 
-    def place_images(self, obj):
-        return format_html(f'<img src="{obj.image.url}" height="200px" />')
-    place_images.short_description = 'Image'
+    def place_images(self, object):
+        if object.image:
+            return format_html(f'<img src="{object.image.url}" height="200px" />')
+
+    place_images.short_description = 'Миниатюра'
+
 
 @admin.register(Places)
-class PlacesAdmin(admin.ModelAdmin):
+class PlacesAdmin(SortableAdminMixin, admin.ModelAdmin):
+    ordering = ('pk',)
     inlines = [ImageInline]

@@ -24,6 +24,7 @@ class Image(models.Model):
     object_id = models.PositiveIntegerField(verbose_name='Позиция', blank=True, default=0)
 
     class Meta:
+        ordering = ['object_id']
         verbose_name = 'Картинка'
         verbose_name_plural = 'Картинки'
 
