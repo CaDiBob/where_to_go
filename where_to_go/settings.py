@@ -10,6 +10,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = env('SECRET_KEY')
 
+CSRF_COOKIE_SECURE = env.bool('CSRF_COOKIE_SECURE')
+
+SESSION_COOKIE_SECURE = env.bool('SESSION_COOKIE_SECURE')
+
+SECURE_SSL_REDIRECT = env.bool('SECURE_SSL_REDIRECT')
 
 DEBUG = env.bool('DEBUG')
 
