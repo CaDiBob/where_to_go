@@ -12,7 +12,7 @@ class Command(BaseCommand):
     help = 'Testing'
 
     def add_arguments(self, parser):
-        parser.add_argument('filename', nargs='?', type=str)
+        parser.add_argument('url', nargs='?', type=str)
 
     def dowload_json(self, json_url):
         response = requests.get(json_url)
@@ -22,7 +22,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        self.dowload_json(options['filename'])
+        self.dowload_json(options['url'])
 
         with open('place.json', 'r') as file:
             place = json.load(file)
