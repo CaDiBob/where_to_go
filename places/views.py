@@ -5,11 +5,11 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
 from places import views
-from places.models import Places
+from places.models import Place
 
 
 def show_palaces(request):
-    places = Places.objects.all()
+    places = Place.objects.all()
     places_info = {
         'type': 'FeatureCollection',
         'features': []
@@ -50,7 +50,7 @@ def get_place(place):
 
 
 def show_place(request, place_id):
-    place = get_object_or_404(Places, pk=place_id)
+    place = get_object_or_404(Place, pk=place_id)
     return JsonResponse(
         get_place(place), json_dumps_params={'ensure_ascii': False, 'indent': 4}
         )

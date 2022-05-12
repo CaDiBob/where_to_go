@@ -2,13 +2,13 @@ from django.contrib import admin
 from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 from django.utils.html import format_html
 
-from places.models import Places, Image
+from places.models import Place, Image
 
 
 @admin.register(Image)
-class ImageAdmin(admin.ModelAdmin):
-    list_display = ('object_id', 'places',)
-    list_display_links = ('places',)
+class ImageAdmin(SortableAdminMixin, admin.ModelAdmin):
+    list_display = ('object_id', 'place',)
+    list_display_links = ('place',)
     ordering = ('object_id', )
 
 
@@ -26,8 +26,8 @@ class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
     place_images.short_description = 'Миниатюра'
 
 
-@admin.register(Places)
-class PlacesAdmin(SortableAdminMixin, admin.ModelAdmin):
+@admin.register(Place)
+class PlaceAdmin(SortableAdminMixin, admin.ModelAdmin):
     search_fields = ('title',)
     ordering = ('pk',)
     inlines = [ImageInline]
