@@ -41,6 +41,24 @@ python manage.py createsuperuser
 python manage.py load_place http://адрес/файла.json
 ```
 
+пример файла json:
+
+```json
+{
+    "title": "Название",
+    "imgs": [
+        "http://адрес/файла.jpg",
+        "http://адрес/файла.jpg",
+    ],
+    "description_short": "Краткое описание",
+    "description_long": "<p>Полное описание, возможно с HTML тегами.",
+    "coordinates": {
+        "lng": "Долгота",
+        "lat": "Широта"
+    }
+}
+```
+
 ## Цели проекта
 
 Код написан в учебных целях — это урок в курсе по Python и веб-разработке на сайте [Devman](https://dvmn.org).
