@@ -97,7 +97,7 @@ USE_TZ = True
 
 MEDIA_URL = os.getenv('MEDIA_URL', '/media/')
 
-MEDIA_ROOT = os.getenv('MEDIA_ROOT', os.path.join(BASE_DIR, 'places', 'media'))
+MEDIA_ROOT = os.getenv('MEDIA_ROOT', os.path.join(BASE_DIR, 'media'))
 
 STATIC_URL = os.getenv('STATIC_URL', '/static/')
 
