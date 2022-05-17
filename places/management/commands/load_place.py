@@ -7,16 +7,15 @@ from django.core.management.base import BaseCommand
 from places.models import Image, Place
 
 
-def dowload_json(json_url):
+def get_json(json_url):
     response = requests.get(json_url)
     response.raise_for_status()
-    with open('place.json', 'w') as file:
-        file.write(response.text)
+    answer = response.json()
+    return answer
 
 
-def save_to_db():
-    with open('place.json', 'r') as file:
-        place = json.load(file)
+def save_to_db(json_url):
+    place = get_json(json_url)
     new_place = Place(
         title=place['title'],
         description_short=place['description_short'],
@@ -47,10 +46,11 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         try:
-            dowload_json(options['url'])
-            save_to_db()
+            save_to_db(options['url'])
             print('Локация успешно добавлена.')
-        except Exception:
+        except json.decoder.JSONDecodeError:
             print('Что-то пошло не так! Проверте ссылку и повторите.')
-        finally:
-            os.remove('place.json')
+        except requests.exceptions.ConnectionError:
+            print('Что-то пошло не так! Проверте ссылку и повторите.')
+        except requests.exceptions.MissingSchema:
+            print('Что-то пошло не так! Проверте ссылку и повторите.')
