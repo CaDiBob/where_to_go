@@ -38,7 +38,7 @@ def show_palaces(request):
 def get_place(place):
     place_detail = {
         'title': place.title,
-        'imgs': [img.image.url for img in place.collection.all()],
+        'imgs': [img.image.url for img in place.collections.all()],
         'description_short': place.description_short,
         'description_long': place.description_long,
         'coordinates': {
