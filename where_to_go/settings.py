@@ -8,7 +8,7 @@ env.read_env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = env('SECRET_KEY', '$boij&%5jh(w^f03u)=aj4)fm_mavbm_4d$ejb^@jl*+0fyvpr')
+SECRET_KEY = env('SECRET_KEY')
 
 DEBUG = env.bool('DEBUG', False)
 
